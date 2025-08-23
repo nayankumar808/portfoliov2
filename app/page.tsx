@@ -1,23 +1,16 @@
 "use client";
 import { useTheme } from "next-themes";
-import { Sun, Moon } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import { Mail, Github, Linkedin, Twitter, ExternalLink } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Mail,
-  Github,
-  Linkedin,
-  Twitter,
-  ExternalLink,
-  Code,
-} from "lucide-react";
-import Image from "next/image";
+import { Card } from "@/components/ui/card";
 
 export default function Portfolio() {
   const { theme, setTheme } = useTheme();
+
   const skills = [
     "React",
     "Next.js",
@@ -39,38 +32,7 @@ export default function Portfolio() {
       stackLine: "React, Node.js, Express, MongoDB",
       urlLabel: "https://www.eleweight.in/home",
     },
-    // {
-    //   name: "Cloud Clipper",
-    //   description: "Next.js, Tailwind CSS, SnapVideo API",
-    //   tech: ["Next.js", "Tailwind CSS"],
-    //   image: "/placeholder-vcrj4.png",
-    //   liveUrl: "https://cloudclipper.vercel.app/",
-    //   codeUrl: "#",
-    // },
-    // {
-    //   name: "takeUforward Landing Page",
-    //   description: "Next.js, Tailwind CSS",
-    //   tech: ["Next.js", "Tailwind CSS"],
-    //   image: "/educational-platform-landing-page.png",
-    //   liveUrl: "https://takeuforward.karank.tech/",
-    //   codeUrl: "#",
-    // },
-    // {
-    //   name: "ZenOps Landing Page",
-    //   description: "Next.js, Tailwind CSS",
-    //   tech: ["Next.js", "Tailwind CSS"],
-    //   image: "/placeholder-0euhl.png",
-    //   liveUrl: "https://zen-ops.vercel.app/",
-    //   codeUrl: "#",
-    // },
-    // {
-    //   name: "HY-Krox Agency Landing Page",
-    //   description: "Next.js, Tailwind CSS",
-    //   tech: ["Next.js", "Tailwind CSS"],
-    //   image: "/digital-agency-landing-page.png",
-    //   liveUrl: "https://hy-krox.vercel.app/",
-    //   codeUrl: "#",
-    // },
+    // add more here…
   ];
 
   const experiences = [
@@ -88,113 +50,142 @@ export default function Portfolio() {
     },
   ];
 
+  // helper to keep the same centered width everywhere (960px)
+  const WRAP = "mx-auto w-full max-w-[960px] px-4 sm:px-6";
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <Mail className="w-4 h-4" />
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
+        <div
+          className={`${WRAP} py-3 sm:py-4 flex items-center justify-between`}
+        >
+          <div className="flex items-center gap-2 min-w-0">
+            <Mail className="h-4 w-4 shrink-0" />
             <a
               href="mailto:nayans808@gmail.com"
-              className="text-primary hover:underline"
+              className="text-primary hover:underline text-sm sm:text-base truncate"
             >
               nayans808@gmail.com
             </a>
           </div>
-          <Button variant="ghost" size="sm">
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-              />
-            </svg>
+
+          {/* icon-only button is size="icon" for perfect square */}
+          <Button
+            variant="ghost"
+            size="icon"
+            type="button"
+            aria-label="Toggle theme"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="shrink-0"
+          >
+            {theme === "dark" ? (
+              // Moon icon for dark mode
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                />
+              </svg>
+            ) : (
+              // Sun icon for light mode
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                />
+              </svg>
+            )}
           </Button>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4">
-        <div className="container mx-auto max-w-4xl text-center">
-          <div className="flex justify-center mb-6">
-            <div className="relative">
-              <Image
-                src="/professional-developer-avatar.png"
-                alt="Karan Kendre"
-                width={80}
-                height={80}
-                className="rounded-2xl"
-              />
-            </div>
+      {/* Hero */}
+      <section className="pt-20 sm:pt-24 pb-12 sm:pb-16">
+        <div className={`${WRAP} text-center`}>
+          <div className="mb-4 sm:mb-6 flex justify-center">
+            <Image
+              src="/professional-developer-avatar.png"
+              alt="Nayan Kumar"
+              width={80}
+              height={80}
+              className="rounded-2xl"
+              priority
+            />
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+          <h1 className="mb-3 sm:mb-4 text-3xl sm:text-4xl md:text-6xl font-bold leading-tight">
             Hi, I'm <span className="text-foreground">Nayan Kumar!</span>
           </h1>
 
-          <div className="text-xl md:text-2xl mb-6 text-muted-foreground">
-            I'm a <span className="text-foreground font-semibold"></span>{" "}
-            <span className="text-primary font-semibold">
+          <div className="mb-4 sm:mb-6 text-lg sm:text-xl md:text-2xl text-muted-foreground">
+            I'm a{" "}
+            <span className="font-semibold text-primary">
               Full Stack Developer
             </span>
             <Badge
               variant="secondary"
-              className="ml-3 bg-green-500/20 text-green-400 border-green-500/30"
+              className="ml-2 sm:ml-3 border-green-500/30 bg-green-500/20 text-green-400 text-xs sm:text-sm"
             >
               • Open to work
             </Badge>
           </div>
 
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <p className="mx-auto mb-6 sm:mb-8 max-w-2xl text-base sm:text-lg text-muted-foreground px-2">
             Feel free to explore my portfolio and reach out — I'd love to
             connect!
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 sm:flex-row px-4">
             <Button
               asChild
               size="lg"
               variant="outline"
-              className="bg-white text-neutral-900 border-neutral-200 hover:bg-neutral-50
-             dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-100"
-              type="button"
+              className="w-full sm:w-auto border-neutral-200 bg-white text-neutral-900 hover:bg-neutral-50
+                         dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-100"
             >
               <a
-                href="https://drive.google.com/file/d/1Jg_KOfcXxwdJtnDofV5ENkdUF46V5WCS/view"
+                href="https://drive.google.com/file/d/1bkz9-OVCLbhdoU4iPbpW8zcd0c_2azIk/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 View Resume
               </a>
             </Button>
-            <Button
-              size="lg"
-              className="text-base bg-primary hover:bg-primary/90"
-            >
+
+            <Button size="lg" className="w-full sm:w-auto text-base">
               <a href="mailto:nayans808@gmail.com">Book a call</a>
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl font-bold mb-4">Skills</h2>
-          <p className="text-muted-foreground mb-8">
+      {/* Skills */}
+      <section className="py-12 sm:py-16">
+        <div className={WRAP}>
+          <h2 className="text-2xl sm:text-3xl font-bold">Skills</h2>
+          <p className="mt-2 text-muted-foreground">
             Technologies and tools I work with.
           </p>
 
           <div
-            className="relative w-full overflow-hidden"
-            /* optional: fade edges (WebKit needs -webkit-mask-image) */
+            className="relative mt-6 sm:mt-8 w-full overflow-hidden"
             style={{
               maskImage:
                 "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
@@ -202,27 +193,22 @@ export default function Portfolio() {
                 "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
             }}
           >
-            {/* Adjust speed here: 20s faster, 40s slower */}
             <div className="animate-marquee [--marquee-duration:28s] hover:[animation-play-state:paused]">
-              {/* Track must be nowrap and contents must not shrink */}
-              <div className="flex flex-row items-center gap-3 whitespace-nowrap">
-                {/* Original list */}
+              <div className="flex items-center gap-3 whitespace-nowrap">
                 {skills.map((skill, i) => (
                   <Badge
                     key={`a-${skill}-${i}`}
                     variant="secondary"
-                    className="px-4 py-2 text-sm shrink-0 cursor-default"
+                    className="shrink-0 px-3 sm:px-4 py-2 text-xs sm:text-sm"
                   >
                     {skill}
                   </Badge>
                 ))}
-
-                {/* Duplicate list (aria-hidden so screen readers don’t repeat it) */}
                 {skills.map((skill, i) => (
                   <Badge
                     key={`b-${skill}-${i}`}
                     variant="secondary"
-                    className="px-4 py-2 text-sm shrink-0 cursor-default"
+                    className="shrink-0 px-3 sm:px-4 py-2 text-xs sm:text-sm"
                     aria-hidden="true"
                   >
                     {skill}
@@ -234,44 +220,42 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section className="py-16 px-4">
-        <div className="mx-auto w-full max-w-5xl">
-          <h2 className="text-3xl font-bold">Projects</h2>
-          <p className="text-muted-foreground mt-2">
+      {/* Projects (list-style container) */}
+      <section className="py-12 sm:py-16">
+        <div className={WRAP}>
+          <h2 className="text-2xl sm:text-3xl font-bold">Projects</h2>
+          <p className="mt-2 text-muted-foreground">
             Selected work featuring full-stack apps, UI polish, and performance.
           </p>
 
-          {/* Outer container like the screenshot */}
-          <Card className="mt-10 overflow-hidden rounded-2xl border">
+          <Card className="mt-6 sm:mt-8 overflow-hidden rounded-2xl">
             <ul className="divide-y">
               {projects.map((p, idx) => (
                 <li
                   key={p.name}
-                  className="group grid grid-cols-[120px_1fr] items-center gap-4 p-4 transition-colors hover:bg-muted/30 md:grid-cols-[160px_1fr]"
+                  className="group flex flex-col sm:grid sm:grid-cols-[120px_1fr] md:grid-cols-[160px_1fr] items-start gap-3 sm:gap-4 p-4 sm:items-center transition-colors hover:bg-muted/30"
                 >
                   {/* Thumbnail */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg ring-1 ring-border">
+                  <div className="relative aspect-[16/10] w-full sm:w-auto overflow-hidden rounded-lg ring-1 ring-border">
                     <Image
                       src={p.image || "/placeholder.svg"}
                       alt={p.name}
                       fill
-                      sizes="160px"
+                      sizes="(max-width: 640px) 100vw, 160px"
                       className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                       priority={idx < 2}
                     />
                   </div>
 
                   {/* Right content */}
-                  <div className="min-w-0">
-                    {/* Header row: title left, Live/Code right */}
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="min-w-0">
-                        <h3 className="truncate text-lg font-semibold">
+                  <div className="min-w-0 w-full">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 sm:gap-3">
+                      <div className="min-w-0 flex-1">
+                        <h3 className="text-lg font-semibold break-words">
                           {p.name}
                         </h3>
                         {p.stackLine && (
-                          <p className="text-muted-foreground mt-1 text-sm">
+                          <p className="mt-1 text-sm text-muted-foreground">
                             {p.stackLine}
                           </p>
                         )}
@@ -280,18 +264,19 @@ export default function Portfolio() {
                             href={p.liveUrl || "#"}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={`mt-1 block truncate text-sm ${
+                            className={`mt-1 block text-sm break-all ${
                               p.liveUrl
                                 ? "text-muted-foreground underline-offset-4 hover:underline"
                                 : "pointer-events-none opacity-50"
                             }`}
+                            aria-disabled={!p.liveUrl}
                           >
                             {p.urlLabel}
                           </Link>
                         )}
                       </div>
 
-                      <div className="shrink-0 space-x-3 text-sm">
+                      <div className="flex gap-3 text-sm shrink-0">
                         <Link
                           href={p.liveUrl || "#"}
                           target="_blank"
@@ -313,17 +298,16 @@ export default function Portfolio() {
                           }`}
                           aria-disabled={!p.codeUrl}
                         >
-                          Code <Github className="h-3.5 w-3.5" />
+                          Code{" "}
+                          {/* using GitHub mark from text keeps it minimal */}
                         </Link>
                       </div>
                     </div>
 
-                    {/* Description */}
-                    <p className="text-muted-foreground mt-2 line-clamp-2 text-sm">
+                    <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">
                       {p.description}
                     </p>
 
-                    {/* Tech pills */}
                     <div className="mt-3 flex flex-wrap gap-2">
                       {p.tech.map((t) => (
                         <Badge key={t} variant="secondary" className="text-xs">
@@ -339,27 +323,31 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Experience Section */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl font-bold mb-8">Experience</h2>
-          <p className="text-muted-foreground mb-8">Recent roles</p>
+      {/* Experience */}
+      <section className="py-12 sm:py-16">
+        <div className={WRAP}>
+          <h2 className="mb-2 text-2xl sm:text-3xl font-bold">Experience</h2>
+          <p className="mb-6 sm:mb-8 text-muted-foreground">Recent roles</p>
 
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             {experiences.map((exp, index) => (
-              <div key={index} className="flex gap-4">
+              <div key={index} className="flex gap-3 sm:gap-4">
                 <div className="flex flex-col items-center">
-                  <div className={`w-3 h-3 rounded-full ${exp.color}`} />
+                  <div className={`h-3 w-3 rounded-full ${exp.color}`} />
                   {index < experiences.length - 1 && (
-                    <div className="w-px h-16 bg-border mt-2" />
+                    <div className="mt-2 h-12 sm:h-16 w-px bg-border" />
                   )}
                 </div>
-                <div className="flex-1 pb-8">
-                  <h3 className="text-lg font-semibold">{exp.title}</h3>
+                <div className="flex-1 pb-6 sm:pb-8">
+                  <h3 className="text-base sm:text-lg font-semibold">
+                    {exp.title}
+                  </h3>
                   {exp.company && (
-                    <p className="text-muted-foreground">{exp.company}</p>
+                    <p className="text-sm sm:text-base text-muted-foreground">
+                      {exp.company}
+                    </p>
                   )}
-                  <p className="text-sm text-muted-foreground mt-1">
+                  <p className="mt-1 text-sm text-muted-foreground">
                     {exp.period}
                   </p>
                 </div>
@@ -369,47 +357,62 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl font-bold mb-4">Contact</h2>
-          <p className="text-muted-foreground mb-8">
+      {/* Contact */}
+      <section className="py-12 sm:py-16">
+        <div className={WRAP}>
+          <h2 className="mb-2 text-2xl sm:text-3xl font-bold">Contact</h2>
+          <p className="mb-6 sm:mb-8 text-muted-foreground">
             Let's build something great together.
           </p>
 
-          <Card className="p-8">
-            <p className="text-muted-foreground mb-6">
+          <Card className="p-4 sm:p-8">
+            <p className="mb-4 sm:mb-6 text-muted-foreground">
               Prefer DMs? Reach me on X (Twitter) — I'm quick to respond.
             </p>
 
-            <div className="flex flex-wrap gap-4 mb-6">
-              <Button variant="outline" size="sm" asChild>
+            <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+              <Button
+                variant="outline"
+                size="sm"
+                asChild
+                className="w-full sm:w-auto bg-transparent"
+              >
                 <a
                   href="https://x.com/nayan909sha"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Twitter className="w-4 h-4 mr-2" />
+                  <Twitter className="mr-2 h-4 w-4" />
                   @nayan909sha
                 </a>
               </Button>
-              <Button variant="outline" size="sm" asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                asChild
+                className="w-full sm:w-auto bg-transparent"
+              >
                 <a
                   href="https://www.linkedin.com/in/nayan-kumar8/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Linkedin className="w-4 h-4 mr-2" />
+                  <Linkedin className="mr-2 h-4 w-4" />
                   LinkedIn
                 </a>
               </Button>
-              <Button variant="outline" size="sm" asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                asChild
+                className="w-full sm:w-auto bg-transparent"
+              >
                 <a
                   href="https://github.com/nayankumar808"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Github className="w-4 h-4 mr-2" />
+                  <Github className="mr-2 h-4 w-4" />
                   GitHub
                 </a>
               </Button>
@@ -419,7 +422,7 @@ export default function Portfolio() {
               Or email:{" "}
               <a
                 href="mailto:nayans808@gmail.com"
-                className="text-primary hover:underline"
+                className="text-primary hover:underline break-all"
               >
                 nayans808@gmail.com
               </a>
@@ -429,19 +432,21 @@ export default function Portfolio() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-4 border-t border-border">
-        <div className="container mx-auto max-w-4xl flex flex-col sm:flex-row justify-between items-center gap-4">
+      <footer className="border-t border-border py-6 sm:py-8">
+        <div
+          className={`${WRAP} flex flex-col items-center justify-between gap-3 sm:gap-4 sm:flex-row`}
+        >
           <p className="text-sm text-muted-foreground">© 2025 Nayan Kumar</p>
           <div className="flex gap-4">
             <a
               href="https://www.linkedin.com/in/nayan-kumar8/"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="text-muted-foreground transition-colors hover:text-foreground text-sm"
             >
               LinkedIn
             </a>
             <a
               href="https://github.com/nayankumar808"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="text-muted-foreground transition-colors hover:text-foreground text-sm"
             >
               GitHub
             </a>
