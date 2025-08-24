@@ -2,7 +2,14 @@
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, Github, Linkedin, Twitter, ExternalLink } from "lucide-react";
+import {
+  Mail,
+  Github,
+  Linkedin,
+  Twitter,
+  ExternalLink,
+  Phone,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -23,15 +30,16 @@ export default function Portfolio() {
 
   const projects = [
     {
-      name: "Eleweight",
-      description: "Your personal fitness coach with AI plans.",
-      image: "/eleweight.png",
-      liveUrl: "https://eleweight.in/home",
-      codeUrl: "https://github.com/you/eleweight",
-      tech: ["React", "Node.js"],
-      stackLine: "React, Node.js, Express, MongoDB",
-      urlLabel: "https://www.eleweight.in/home",
+      name: "Blogging Application",
+      description: "A mdeium like Blogging Application.",
+      image: "Blogging-App.png",
+      liveUrl: "https://blogging-app-nayankumar808s-projects.vercel.app/",
+      codeUrl: "https://github.com/nayankumar808/blogging_app",
+      tech: ["React", "Hono"],
+      stackLine: "React, Hono, Cloudflare Workers ,Postgres",
+      urlLabel: "https://blogging-app-nayankumar808s-projects.vercel.app/",
     },
+
     // add more here…
   ];
 
@@ -56,6 +64,7 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[960px] h-96 bg-gradient-to-r from-purple-500/20 via-blue-500/10 to-transparent rounded-full blur-3xl pointer-events-none" />
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
         <div
           className={`${WRAP} py-3 sm:py-4 flex items-center justify-between`}
@@ -414,6 +423,17 @@ export default function Portfolio() {
                 >
                   <Github className="mr-2 h-4 w-4" />
                   GitHub
+                </a>
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                asChild
+                className="w-full sm:w-auto bg-transparent"
+              >
+                <a href="tel:+919097174433">
+                  <Phone className="mr-2 h-4 w-4" />
+                  +91 9097174433
                 </a>
               </Button>
             </div>
