@@ -51,7 +51,7 @@ export default function Portfolio() {
       color: "bg-purple-500",
     },
     {
-      title: "Frontend Developer",
+      title: "Frontend Developer Intern",
       company: "AcuTech Solutions",
       period: "Sep 2024 – Jan 2025",
       color: "bg-blue-500",
