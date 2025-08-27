@@ -170,7 +170,7 @@ export default function Portfolio() {
                          dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-100"
             >
               <a
-                href="https://drive.google.com/file/d/1bkz9-OVCLbhdoU4iPbpW8zcd0c_2azIk/view?usp=sharing"
+                href="https://drive.google.com/file/d/1CU0rlaRaouuTzFxXSv5saxRGFkLEuvVu/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
               >
