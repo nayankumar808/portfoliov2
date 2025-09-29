@@ -45,7 +45,7 @@ export default function Portfolio() {
 
   const experiences = [
     {
-      title: "Genrative Ai intern",
+      title: "Prompt Engineer Intern",
       company: "Id fresh foods",
       period: "Jul 2025 – Present",
       color: "bg-purple-500",
